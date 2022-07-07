@@ -1,0 +1,7 @@
+cradle:
+  stack:
+    - path: './src/Main.hs'
+      component: 'precursory:exe:precursory'
+
+    - path: './src/Paths_precursory.hs'
+      component: 'precursory:exe:precursory'
