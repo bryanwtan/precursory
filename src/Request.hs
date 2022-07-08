@@ -1,5 +1,20 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 module Request where
 
-import Network.HTTP.Simple (httpLBS)
+-- data and type constructors (..)
+import Data.ByteString.Lazy (ByteString)
+import Network.HTTP.Client
+import Network.HTTP.Simple (
+    Request (..),
+    Response,
+    httpJSON,
+ )
 
-get url = httpLBS url
+get url = do
+    initReq <- parseRequest url
+    let req =
+            initReq
+                { method = "GET"
+                }
+    httpJSON req

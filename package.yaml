@@ -14,7 +14,11 @@ extra-source-files:
 dependencies:
   - base >= 4.7 && < 5
   - http-conduit >= 2.3 && < 3
-  - text >= 2.0
+  - text
+  - bytestring
+  - http-client
+  - aeson
+  - yaml
 
 executables:
   precursory:

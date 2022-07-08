@@ -25,7 +25,11 @@ executable precursory
   hs-source-dirs:
       src
   build-depends:
-      base >=4.7 && <5
+      aeson
+    , base >=4.7 && <5
+    , bytestring
+    , http-client
     , http-conduit >=2.3 && <3
-    , text >=2.0
+    , text
+    , yaml
   default-language: Haskell2010
