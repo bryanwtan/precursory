@@ -2,16 +2,14 @@
 
 module Request where
 
--- data and type constructors (..)
-import Data.ByteString.Lazy (ByteString)
-import Network.HTTP.Client
-import Network.HTTP.Simple (
-    Request (..),
-    Response,
-    httpJSON,
- )
+import Data.Aeson (Value)
 
-get url = do
+import Data.ByteString.Lazy (ByteString)
+import Data.Text (Text)
+import Network.HTTP.Client
+import Network.HTTP.Simple (httpJSON)
+
+httpGet url = do
     initReq <- parseRequest url
     let req =
             initReq
