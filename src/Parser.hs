@@ -1,9 +1,12 @@
+{-# LANGUAGE DerivingStrategies #-}
+{-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE OverloadedStrings #-}
 
 module Parser where
 
 import Control.Applicative
-import Data.Aeson
+
+import Data.Aeson (FromJSON, parseJSON, withObject, (.:))
 import Data.Text (Text)
 
 data Story = Story
@@ -13,8 +16,13 @@ data Story = Story
     deriving (Show)
 
 instance FromJSON Story where
-    parseJSON (Object obj) = do
-        title <- obj .: "incoming_title"
-        body <- obj .: "incoming_body"
-        return (Story{title = title, body = body})
-    parseJSON _ = empty
+    parseJSON = withObject "Story" $ \o ->
+        Story
+            <$> o .: "incoming_title"
+            <*> o .: "incoming_body"
+
+newtype StoryId = StoryId {unStoryId :: Integer}
+    deriving newtype (FromJSON)
+
+newtype TopStories = TopStories {unTopStories :: [StoryId]}
+    deriving newtype (FromJSON)
