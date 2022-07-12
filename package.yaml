@@ -18,6 +18,7 @@ dependencies:
   - bytestring
   - http-client
   - aeson
+  - async
 
 executables:
   precursory:
